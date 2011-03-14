@@ -36,47 +36,60 @@
 
 <div id="imageToolBar">
   <div class="randomButtons">
-    {if isset($U_SLIDESHOW_START) }
-      <a href="{$U_SLIDESHOW_START}" title="{'slideshow'|@translate}" rel="nofollow"><img src="{$ROOT_URL}{$themeconf.icon_dir}/start_slideshow.png" class="button" alt="{'slideshow'|@translate}"></a>
-    {/if}
-    {if isset($U_METADATA) }
-      <a href="{$U_METADATA}" title="{'Show file metadata'|@translate}" rel="nofollow"><img src="{$ROOT_URL}{$themeconf.icon_dir}/metadata.png" class="button" alt="metadata"></a>
-    {/if}
-    {if isset($current.U_DOWNLOAD) }
-      <a href="{$current.U_DOWNLOAD}" title="{'download this file'|@translate}"><img src="{$ROOT_URL}{$themeconf.icon_dir}/save.png" class="button" alt="{'download'|@translate}"></a>
-    {/if}
-    {if isset($PLUGIN_PICTURE_ACTIONS)}{$PLUGIN_PICTURE_ACTIONS}{/if}
-    {if isset($favorite) }
-      <a href="{$favorite.U_FAVORITE}" title="{if $favorite.IS_FAVORITE}{'delete this image from your favorites'|@translate}{else}{'add this image to your favorites'|@translate}{/if}"><img src="{$ROOT_URL}{$themeconf.icon_dir}/{if $favorite.IS_FAVORITE}del_favorite{else}favorite{/if}.png" class="button" alt="favorite" title="{if $favorite.IS_FAVORITE}{'delete this image from your favorites'|@translate}{else}{'add this image to your favorites'|@translate}{/if}"></a>
-    {/if}
-    {if !empty($U_SET_AS_REPRESENTATIVE) }
-      <a href="{$U_SET_AS_REPRESENTATIVE}" title="{'set as category representative'|@translate}"><img src="{$ROOT_URL}{$themeconf.icon_dir}/representative.png" class="button" alt="{'representative'|@translate}"></a>
-    {/if}
-    {if isset($U_ADMIN) }
-      <a href="{$U_ADMIN}" title="{'Modify information'|@translate}"><img src="{$ROOT_URL}{$themeconf.icon_dir}/preferences.png" class="button" alt="{'edit'|@translate}"></a>
-    {/if}
-    {if isset($U_CADDIE) }{*caddie management BEGIN*}
-<script type="text/javascript">
+{strip}{if isset($U_SLIDESHOW_START)}
+	<a href="{$U_SLIDESHOW_START}" title="{'slideshow'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-slideshow"> </span><span class="pwg-button-text">{'slideshow'|@translate}</span>
+	</a>
+{/if}{/strip}
+{strip}{if isset($U_METADATA)}
+	<a href="{$U_METADATA}" title="{'Show file metadata'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-camera-info"> </span><span class="pwg-button-text">{'Show file metadata'|@translate}</span>
+	</a>
+{/if}{/strip}
+{strip}{if isset($current.U_DOWNLOAD)}
+	<a href="{$current.U_DOWNLOAD}" title="{'download this file'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-save"> </span><span class="pwg-button-text">{'download'|@translate}</span>
+	</a>
+{/if}{/strip}
+{if isset($PLUGIN_PICTURE_ACTIONS)}{$PLUGIN_PICTURE_ACTIONS}{/if}
+{strip}{if isset($favorite)}
+	<a href="{$favorite.U_FAVORITE}" title="{if $favorite.IS_FAVORITE}{'delete this photo from your favorites'|@translate}{else}{'add this photo to your favorites'|@translate}{/if}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-favorite-{if $favorite.IS_FAVORITE}del{else}add{/if}"> </span><span class="pwg-button-text">{'Favorites'|@translate}</span>
+	</a>
+{/if}{/strip}
+{strip}{if isset($U_SET_AS_REPRESENTATIVE)}
+	<a href="{$U_SET_AS_REPRESENTATIVE}" title="{'set as album representative'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-representative"> </span><span class="pwg-button-text">{'representative'|@translate}</span>
+	</a>
+{/if}{/strip}
+{strip}{if isset($U_ADMIN)}
+	<a href="{$U_ADMIN}" title="{'Modify information'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-edit"> </span><span class="pwg-button-text">{'edit'|@translate}</span>
+	</a>
+{/if}{/strip}
+{strip}{if isset($U_CADDIE)}{*caddie management BEGIN*}
+{footer_script}
 {literal}function addToCadie(aElement, rootUrl, id)
 {
 if (aElement.disabled) return;
-aElement.disabled=true; 
+aElement.disabled=true;
 var y = new PwgWS(rootUrl);
-
 y.callService(
-  "pwg.caddie.add", {image_id: id} ,
-  {
-    onFailure: function(num, text) { alert(num + " " + text); document.location=aElement.href; },
-    onSuccess: function(result) { aElement.disabled = false; }
-  }
-  );
+	"pwg.caddie.add", {image_id: id} ,
+	{
+		onFailure: function(num, text) { alert(num + " " + text); document.location=aElement.href; },
+		onSuccess: function(result) { aElement.disabled = false; }
+	}
+	);
 }{/literal}
-</script>
-      <a href="{$U_CADDIE}" onclick="addToCadie(this, '{$ROOT_URL|@escape:'javascript'}', {$current.id}); return false;" title="{'add to caddie'|@translate}"><img src="{$ROOT_URL}{$themeconf.icon_dir}/caddie_add.png" class="button" alt="{'caddie'|@translate}"></a>
-    {/if}{*caddie management END*}
+{/footer_script}
+	<a href="{$U_CADDIE}" onclick="addToCadie(this, '{$ROOT_URL}', {$current.id}); return false;" title="{'add to caddie'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+		<span class="pwg-icon pwg-icon-caddie-add"> </span><span class="pwg-button-text">{'caddie'|@translate}</span>
+	</a>
+{/if}{/strip}{*caddie management END*}
   </div>
   {include file='picture_nav_buttons.tpl'|@get_extent:'picture_nav_buttons'}
-</div> <!-- imageToolBar -->
+</div>{*<!-- imageToolBar -->*}
 
 <div id="theImage">
 
@@ -141,8 +154,9 @@ y.callService(
 
 </div>
 
-<table id="standard" class="infoTable" summary="{'Some info about this picture'|@translate}">
-  {if $display_info.author}
+<table id="standard" class="infoTable">
+{strip}
+ {if $display_info.author}
   <tr id="Author">
     <td class="label">{'Author'|@translate}</td>
     <td class="value">{if isset($INFO_AUTHOR)}{$INFO_AUTHOR}{else}{'N/A'|@translate}{/if}</td>
@@ -227,36 +241,39 @@ y.callService(
 {if isset($rating)}
 	<tr id="rating">
 		<td class="label">
-			<span id="updateRate">{if isset($rating.USER_RATE)}{'Update your rating'|@translate}{else}{'Rate this picture'|@translate}{/if}</span>
+			<span id="updateRate">{if isset($rating.USER_RATE)}{'Update your rating'|@translate}{else}{'Rate this photo'|@translate}{/if}</span>
 		</td>
 		<td class="value">
 			<form action="{$rating.F_ACTION}" method="post" id="rateForm" style="margin:0;">
-			<div>&nbsp;
+			<div>
 			{foreach from=$rating.marks item=mark name=rate_loop}
-			{if !$smarty.foreach.rate_loop.first} | {/if}
 			{if isset($rating.USER_RATE) && $mark==$rating.USER_RATE}
-			  <input type="button" name="rate" value="{$mark}" class="rateButtonSelected" title="{$mark}">
+				<input type="button" name="rate" value="{$mark}" class="rateButtonSelected" title="{$mark}">
 			{else}
-			  <input type="submit" name="rate" value="{$mark}" class="rateButton" title="{$mark}">
+				<input type="submit" name="rate" value="{$mark}" class="rateButton" title="{$mark}">
 			{/if}
 			{/foreach}
-			<script type="text/javascript" src="{$ROOT_URL}themes/default/js/rating.js"></script>
-			<script type="text/javascript">
-			makeNiceRatingForm( {ldelim}rootUrl: '{$ROOT_URL|@escape:"javascript"}', image_id: {$current.id},
-			updateRateText: "{'Update your rating'|@translate|@escape:'javascript'}", updateRateElement: document.getElementById("updateRate"),
-			ratingSummaryText: "{'%.2f (rated %d times)'|@translate|@escape:'javascript'}", ratingSummaryElement: document.getElementById("ratingSummary") {rdelim} );
-			</script>
+			{strip}{combine_script id='core.scripts' load='async' path='themes/default/js/scripts.js'}
+			{combine_script id='rating' load='async' require='core.scripts' path='themes/default/js/rating.js'}
+			{footer_script}
+				var _pwgRatingAutoQueue = _pwgRatingAutoQueue||[];
+				_pwgRatingAutoQueue.push( {ldelim}rootUrl: '{$ROOT_URL}', image_id: {$current.id},
+					updateRateText: "{'Update your rating'|@translate|@escape:'javascript'}", updateRateElement: document.getElementById("updateRate"),
+					ratingSummaryText: "{'%.2f (rated %d times)'|@translate|@escape:'javascript'}", ratingSummaryElement: document.getElementById("ratingSummary"){rdelim} );
+			{/footer_script}
+			{/strip}
 			</div>
 			</form>
 		</td>
 	</tr>
 {/if}
 
-{if $display_info.privacy_level and isset($available_permission_levels) }
+{if $display_info.privacy_level and isset($available_permission_levels)}
 	<tr id="Privacy">
 		<td class="label">{'Who can see this photo?'|@translate}</td>
-		<td class="value"> 
-<script type="text/javascript">
+		<td class="value">
+{combine_script id='core.scripts' load='async' path='themes/default/js/scripts.js'}
+{footer_script}
 {literal}function setPrivacyLevel(selectElement, rootUrl, id, level)
 {
 selectElement.disabled = true;
@@ -270,15 +287,15 @@ y.callService(
 	}
 	);
 }{/literal}
-</script>
-	<select onchange="setPrivacyLevel(this, '{$ROOT_URL|@escape:'javascript'}', {$current.id}, this.options[selectedIndex].value)">
+{/footer_script}
+	<select onchange="setPrivacyLevel(this, '{$ROOT_URL}', {$current.id}, this.options[selectedIndex].value)">
 		{foreach from=$available_permission_levels item=label key=level}
 		<option label="{$label}" value="{$level}"{if $level == $current.level} selected="selected"{/if}>{$label}</option>
 		{/foreach}
 	</select>
 	</td></tr>
 {/if}
-
+{/strip}
 </table>
 
 {if isset($metadata)}

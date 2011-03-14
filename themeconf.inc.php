@@ -1,9 +1,9 @@
 <?php
 /*
-Theme Name: OS_glass
+Theme Name: OS_glass_clear
 Version: auto
 Description: 
-Theme URI: http://fr.piwigo.org/ext/extension_view.php?eid=383
+Theme URI: http://piwigo.org/ext/extension_view.php?eid=514
 Author: flop25
 Author URI: http://www.planete-flop.fr
 */

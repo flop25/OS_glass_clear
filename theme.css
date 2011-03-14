@@ -280,18 +280,37 @@ background:transparent;
 	background-repeat:repeat-x;
 	background-position: center bottom;
 	background-color: #000000;
-}
+}/*
 #imageToolBar A:hover {
 background-image: url(images/fondMenuSurvol.gif);
 background-repeat:repeat-x;
 background-position:center;
 background-color:transparent;
-}
+}*/
 #action_pict {
 	border: 2px solid #FFFFFF;
     background: transparent url(images/section_in.png) repeat top center;
     color:#000;
     font-weight:bold;
+}
+#imageToolBar {
+    height: 60px;
+}
+#imageToolBar #thumbPrev, #imageToolBar #thumbNext {
+	margin-left:5px;
+	margin-right:5px;
+	display:inline;
+	width:auto;
+}
+#imageToolBar #thumbCurrent {
+	margin-left:5px;
+	margin-right:5px;
+	display:inline;
+	width:auto;
+}
+#imageToolBar #linkPrev, #imageToolBar #thumbCurrent, #imageToolBar #linkNext {
+	border:#FFF solid 2px;
+	width:auto;
 }
 /*calendar elements*/
 SPAN.calItem, SPAN.calItemEmpty
