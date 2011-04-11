@@ -12,11 +12,11 @@ jQuery(document).ready(function(){
 	}).next().show();
 });
 $(function(){
-    $(".categoryActions A").tipTip({delay : 0, fadeIn : 200, fadeOut : 200, });
+    $(".categoryActions A").tipTip({delay : 0, fadeIn : 200, fadeOut : 200 });
     $("#home_icon A").tipTip({edgeOffset : 10, fadeIn : 200, fadeOut : 200, defaultPosition : "top" });
-    $(".randomButtons A").tipTip({delay : 0, fadeIn : 200, fadeOut : 200, });
-    $(".navButtons A").tipTip({delay : 0, fadeIn : 200, fadeOut : 200, });
-    $("#mbCategories a").tipTip({delay : 0, fadeIn : 200, fadeOut : 200, });
+    $(".randomButtons A").tipTip({delay : 0, fadeIn : 200, fadeOut : 200 });
+    $(".navButtons A").tipTip({delay : 0, fadeIn : 200, fadeOut : 200 });
+    $("#mbCategories a").tipTip({delay : 0, fadeIn : 200, fadeOut : 200 });
 });
   </script> 
 {/literal}
@@ -30,6 +30,7 @@ $(function(){
 	/* contenu "section" */
 	#section_up_left, #section_up, #section_up_right, #section_left, #section_bottom_left, #section_bottom, #section_bottom_right, #section_right{
 	background:none!important;
+  color:#000!important;
 	}
 </style>
 <![endif]-->
@@ -37,10 +38,12 @@ $(function(){
 <style>
 	#menubar dl, #section_in {
 	background:  #FFF!important;
+  color:#000!important;
 	}
 	/* contenu "section" */
 	#section_up_left, #section_up, #section_up_right, #section_left, #section_bottom_left, #section_bottom, #section_bottom_right, #section_right{
 	background:none!important;
+  color:#000!important;
 	}
 	BODY#theCommentsPage .content,
 	BODY#theUploadPage .content,
@@ -58,7 +61,11 @@ $(function(){
 	#comments
 	{
 	background:  #FFF!important;
+  color:#000!important;
 	}
+  #menubar A , #section_in A  {
+  color:#000!important;
+  }
 </style>
 <![endif]-->
 {/literal}
